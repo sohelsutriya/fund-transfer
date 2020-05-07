@@ -15,16 +15,25 @@ import com.cg.obs.model.Transaction;
 import com.cg.obs.model.TransactionType;
 import com.cg.obs.service.FundTransferService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 /**
  * @author sohel
  *
  */
 @RestController
+@Api
 public class FundTransferController {
 	@Autowired
 	FundTransferService service;
 
 	@PostMapping(path = "/fundtransfer/from/{senderAccountNo}/to/{recieverAccountNo}/{amount}")
+	@ApiOperation(value = "fundTransfer", nickname = "fundTransfer")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = Transaction.class),
+			@ApiResponse(code = 500, message = "Failure", response = Transaction.class) })
 	public String fundTransfer(@PathVariable String senderAccountNo, @PathVariable String recieverAccountNo,
 			@PathVariable double amount) {
 		System.out.println("this will transfer funds from one account to other and update transactions also");
