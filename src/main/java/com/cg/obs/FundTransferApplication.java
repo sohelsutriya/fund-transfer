@@ -24,27 +24,21 @@ public class FundTransferApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FundTransferApplication.class, args);
 	}
+
 	@Bean
-  	 public Docket swaggerConfiguration() {
-      		return new Docket(DocumentationType.SWAGGER_2)
-                  .select()
-                  .paths(PathSelectors.any())
-                  .apis(RequestHandlerSelectors.basePackage("com.cg.obs"))
-                  .build()
-                  .apiInfo(myApiInfo());
-          }
+	public Docket swaggerConfiguration() {
+		return new Docket(DocumentationType.SWAGGER_2).select().paths(PathSelectors.any())
+				.apis(RequestHandlerSelectors.basePackage("com.cg.obs")).build().apiInfo(myApiInfo());
+	}
+
 	private ApiInfo myApiInfo() {
-       // for version 2.9.1
-       ApiInfo apiInfo=new ApiInfo(
-               "SPRING WITH SWAGGER API",
-                "API CREATION",
-                "1.0",
-                "Free to Use",
-                new Contact("Online Banking System","/obs","obs@gmail.com"),
-                "API licence",
-                "/obs",
-                Collections.emptyList());
-       return apiInfo;  }
+		// for version 2.9.1
+		ApiInfo apiInfo = new ApiInfo("SPRING WITH SWAGGER API", "API CREATION", "1.0", "Free to Use",
+				new Contact("Online Banking System", "/obs", "obs@gmail.com"), "API licence", "/obs",
+				Collections.emptyList());
+		return apiInfo;
+	}
+
 	@Bean
 	public RestTemplate createTemplate() {
 		return new RestTemplate();
